@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Portfolio</title>    
+        <link rel='stylesheet' href='./styles.css'>
+    </head>
+    <body>
+        <div class='main'>
+            <div class='main-editor'>
+            
+                <div class='main-editor-numbers'>
+                </div>
+                
+                <div class='main-editor-vertical'>
+                    <h1 text='Hello World!' id='title'>Hello World!</h1>
+                    <div class="main-editor-vertical-lines">
+
+                    </div>                
+                </div>
+
+            </div>
+            
+            <div class='after-editor'>
+                <h1 class='title'>Projetos</h1>
+                <ul id='renderLI'>
+
+                </ul>
+                
+                <h1 class='title'>Contato</h1>
+                <div class='after-editor-contacts'>
+                    <a href='https://www.facebook.com/profile.php?id=100008425034028' title='Facebook' target='blank'><img src="./assets/facebook-white-18dp.svg" alt=""></a>
+                    <a href='https://github.com/Guilherme300' title='Github' target='blank'><img src="./assets/GitHub-Mark-Light-32px.png" alt=""></a>
+                    <a title='Email' id='email'><img src="./assets/email-white-18dp.svg" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <script src="renders.js"></script>
+        <script src="render.js"></script>
+
+        <script>
+            let render = new Render(document.querySelector('#title'), document.querySelector('.main-editor-vertical-lines'))         
+            render.updateContent(renders.myProfile)
+            
+            let main = document.querySelector('.main-editor')
+            let renderLI = document.querySelector('#renderLI')          
+            
+            let rendersKeys = Object.keys(renders)
+            
+            for (let i = 1; i < rendersKeys.length; i++)
+            {
+                let li = document.createElement('li')
+                let span = document.createElement('span')
+                li.innerHTML = i-1 + ': '
+                span.innerHTML = renders[rendersKeys[i]].head.title
+                span.setAttribute('text', renders[rendersKeys[i]].head.title)
+                
+                li.appendChild(span)
+                li.onclick = () => 
+                {
+                    render.updateContent(renders[rendersKeys[i]])
+                    main.scrollIntoView()                            
+                }
+                renderLI.appendChild(li)
+            }
+        </script>
+        
+        <script type="text/javascript">
+            let text2Render = document.querySelector('.main-editor-numbers')
+            let fontSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--editor-zoom').replace('px', ''))
+            let maxNumber = Math.floor((window.innerHeight / fontSize) * 0.8)           
+            
+            for (let i = 0; i <= maxNumber; i++){
+                let p = document.createElement('p')
+                p.innerHTML = i 
+                text2Render.appendChild(p)
+            }
+        </script>
+        
+    </body>
+</html>
