@@ -42,6 +42,7 @@ const renders = {
     {
         head: { title: 'Random Image Draw' },
         body: `\\f{\\
+        \\im.//assets/randomImageDraw/01.png\\
         \\s'\\skTecnologias\\': ['Html, Css, 'Javascript'],\\
         \\s'\\skDescrição\\': 'Randomiza as imagens e as mostra na tela a cada x segundos para à pratica do desenho.'\\
         \\f}\\
